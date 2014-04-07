@@ -1,0 +1,8 @@
+{
+  "freeze": true,
+  "undef": true,
+  "laxbreak": true,
+  "predef": ["window"],
+  "indent": 4,
+  "maxcomplexity": 2
+}
