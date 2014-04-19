@@ -1,19 +1,21 @@
 (function () {
     'use strict';
     $(function () {
-
-        function CoinTosser () {
+        function sum(n) {
+            return n === 0 ? 0 : n + sum(n - 1);
         }
-        CoinTosser.prototype = {
-          HEAD: 'Head',
-          TAIL: 'Tail'
-        };
-        CoinTosser.prototype.toss = function () {
-            return Math.random() < 0.5 ? this.HEAD : this.TAIL;
-        };
 
-        var coinTosser = new CoinTosser();
+        var $input = $('<label>Evaluate sum till <input/></label>').appendTo('body');
         var $content = $('<div></div>').appendTo('body');
-        $content.text(coinTosser.toss());
+        $input.change(function (event) {
+            var val = parseInt($(event.target).val(), 10);
+            var res;
+            try {
+                res = sum(val);
+            } catch (e) {
+                res = e.message;
+            }
+            $content.append('<br>0 + 1 + ... + ' + val + ' = ' + res);
+        });
     });
 }());
