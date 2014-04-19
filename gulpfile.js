@@ -23,6 +23,8 @@ gulp.task('eslint', function () {
                 quotes: [2,"single"]
             },
             globals: {
+                '$': true,
+                'jQuery': false
             },
             env:{
                 browser:true

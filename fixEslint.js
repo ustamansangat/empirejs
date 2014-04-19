@@ -1,17 +1,7 @@
 var fs = require('fs');
 var esprima = require('esprima');
 var escodegen= require('escodegen');
-/*
-/Users/fiona/empirejs/public/index.js: line 2, col 4, Error - '$' is not defined. (no-undef)
-/Users/fiona/empirejs/public/index.js: line 3, col 23, Error - '$' is not defined. (no-undef)
-/Users/fiona/empirejs/public/index.js: line 3, col 56, Error - Missing semicolon. (semi)
-/Users/fiona/empirejs/public/index.js: line 5, col 33, Error - Missing semicolon. (semi)
-/Users/fiona/empirejs/public/index.js: line 7, col 33, Error - Missing semicolon. (semi)
-/Users/fiona/empirejs/public/index.js: line 2, col 6, Error - Missing "use strict" statement. (strict)
-/Users/fiona/empirejs/public/index.js: line 1, col 1, Error - Missing "use strict" statement. (strict)
-*/
-function fixStrict(astNode) {
-}
+
 function fix(astNode) {
   if(astNode.type === 'Literal') {
     if(astNode.raw && astNode.raw[0] === '"') {
