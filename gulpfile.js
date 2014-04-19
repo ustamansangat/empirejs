@@ -20,7 +20,8 @@ gulp.task('eslint', function () {
         .pipe(eslint({
             rulesdir:'es-rules/',
             rules:{
-                quotes: [2,"single"]
+                quotes: [2,"single"],
+                "no-prototype-without-new": 2
             },
             globals: {
                 '$': true,
