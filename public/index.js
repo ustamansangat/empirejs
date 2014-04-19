@@ -2,7 +2,10 @@
     'use strict';
     $(function () {
         function sum(n) {
-            return n === 0 ? 0 : n + sum(n - 1);
+            function helper(n, acc) {
+                return n === 0 ? acc : helper(n - 1, acc + n);
+            }
+            return helper(n, 0);
         }
 
         var $input = $('<label>Evaluate sum till <input/></label>').appendTo('body');
