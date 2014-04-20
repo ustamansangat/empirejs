@@ -2,10 +2,32 @@
     'use strict';
     $(function () {
         function sum(n) {
-            function helper(n, acc) {
-                return n === 0 ? acc : helper(n - 1, acc + n);
+            function TailCall(args) {
+                this.args = args;
             }
-            return helper(n, 0);
+
+            function thrower() {
+                throw new TailCall(arguments);
+            }
+
+            function helper(n, acc) {
+                return n === 0 ? acc : thrower(n - 1, acc + n);
+            }
+
+            function looper() {
+                var args = arguments;
+                while (args) {
+                    try {
+                        return helper.apply(null, args);
+                    } catch (e) {
+                        if (e.constructor === TailCall) {
+                            args = e.args;
+                        }
+                    }
+                }
+            }
+
+            return looper(n, 0);
         }
 
         var $input = $('<label>Evaluate sum till <input/></label>').appendTo('body');
